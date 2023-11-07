@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/assets/css/main.css"/>
+
+    <title>Admin Panel</title>
+</head>
+
+<body>
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="images/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">Admin</span>
+    </div>
+
+    <div class="menu-items">
+        <ul class="nav-links">
+            <li><a href="/admin/dashboard">
+                <i class="uil uil-dashboard"></i>
+                <span class="link-name">Dashboard</span>
+            </a></li>
+            <li><a href="/admin/users">
+                <i class="uil uil-user"></i>
+                <span class="link-name">Users</span>
+            </a></li>
+            <li><a href="/admin/prompts">
+                <i class="uil uil-equal-circle"></i>
+                <span class="link-name">Prompts</span>
+            </a></li>
+            <li><a href="/admin/prompt-types">
+                <i class="uil uil-minus-circle"></i>
+                <span class="link-name">Prompt Types</span>
+            </a></li>
+            <li><a href="/admin/admins">
+                <i class="uil uil-user-plus"></i>
+                <span class="link-name">Admins</span>
+            </a></li>
+        </ul>
+
+        <ul class="logout-mode">
+            <li><a href="#">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
+
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+
+        <div class="search-box">
+            <i class="uil uil-search"></i>
+            <input type="text" placeholder="Search here...">
+        </div>
+    </div>
+
+    <div class="dash-content">
+        <div class="overview">
+            <div class="title">
+                <i class="uil uil-tachometer-fast-alt"></i>
+                <span class="text">Admins</span>
+            </div>
+        </div>
+
+        <div class="activity">
+
+            <section class="tables-page-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                    <th></th>
+                                    <th></th>
+                                    </thead>
+                                    <tr th:each="admin:${admins}">
+                                        <td th:text="${admin.id}"></td>
+                                        <td th:text="${admin.name}"></td>
+                                        <td th:text="${admin.email}"></td>
+                                        <td th:text="${admin.password}"></td>
+                                        <td>
+                                            <button class="btn btn-warning">Update</button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</section>
+<script src="/assets/js/script.js"></script>
+</body>

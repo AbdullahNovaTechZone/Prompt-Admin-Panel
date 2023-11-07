@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Log In</title>
+
+    <link rel="stylesheet" href="/assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/assets/css/main.css"/>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-12">
+            <div class="row justify-content-center rounded mt-5">
+
+                <div class="col-12 text-center">
+                    <span class="fs-1 fw-bold text-dark">Log In</span>
+                </div>
+
+                <div class="col-11 col-sm-9 col-md-7 col-lg-5">
+                    <div class="row g-3 shadow p-3 mt-3">
+
+                        <div class="col-12">
+                            <label class="fw-bold">Email</label>
+                            <input type="email" class="form-control" id="email"/>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="fw-bold">Password</label>
+                            <input type="password" class="form-control" id="password"/>
+                        </div>
+
+                        <div class="col-12 d-grid">
+                            <button class="btn btn-success fw-bold login-button">Log In</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="/assets/js/script.js"></script>
+
+<script type="text/javascript">
+    document.getElementsByClassName('login-button').item(0).addEventListener('click', function () {
+
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
+
+        fetch('/auth/login', {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'email': email,
+                'password': password
+            })
+        }).then(response => response.json())
+            .then(value => {
+                if (value.data === 'Log In Success') {
+                    localStorage.setItem('accessToken', value.accessToken)
+                    if (value.userRole === 'ADMIN') {
+                        window.location.href = '/admin/view/dashboard'
+                    }
+                } else {
+                    alert(value.data)
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    })
+</script>
+</body>
+
+</html>
