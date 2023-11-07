@@ -1,0 +1,50 @@
+<div th:fragment="sideBar" class="logo-name">
+    <div class="logo-image">
+        <img src="images/logo.png" alt="">
+    </div>
+
+    <span class="logo_name">Admin</span>
+</div>
+
+<div class="menu-items">
+    <ul class="nav-links">
+        <li><a href="#">
+            <i class="uil uil-dashboard"></i>
+            <span class="link-name">Dahsboard</span>
+        </a></li>
+        <li><a href="#">
+            <i class="uil uil-user"></i>
+            <span class="link-name">Users</span>
+        </a></li>
+        <li><a href="#">
+            <i class="uil uil-equal-circle"></i>
+            <span class="link-name">Prompts</span>
+        </a></li>
+        <li><a href="#">
+            <i class="uil uil-minus-circle"></i>
+            <span class="link-name">Prompt Types</span>
+        </a></li>
+        <li><a href="#">
+            <i class="uil uil-user-plus"></i>
+            <span class="link-name">Admins</span>
+        </a></li>
+    </ul>
+
+    <ul class="logout-mode">
+        <li><a href="#">
+            <i class="uil uil-signout"></i>
+            <span class="link-name">Logout</span>
+        </a></li>
+
+        <li class="mode">
+            <a href="#">
+                <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+            </a>
+
+            <div class="mode-toggle">
+                <span class="switch"></span>
+            </div>
+        </li>
+    </ul>
+</div>

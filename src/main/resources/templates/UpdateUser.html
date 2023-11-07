@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Update User</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/assets/css/main.css"/>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-12">
+            <div class="row justify-content-center rounded mt-5">
+
+                <div class="col-12 text-center">
+                    <span class="fs-1 fw-bold text-dark">Update User</span>
+                </div>
+
+                <div class="col-11 col-sm-9 col-md-7 col-lg-5">
+                    <div class="row g-3 shadow p-3 mt-3">
+
+                        <div class="col-12">
+                            <label class="fw-bold">Name</label>
+                            <input type="text" class="form-control" th:value="${user.name}" id="name"/>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="fw-bold">Email</label>
+                            <input type="email" class="form-control" id="email" th:value="${user.email}" disabled/>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="fw-bold">Password</label>
+                            <input type="password" class="form-control" th:value="${user.password}" id="password"/>
+                        </div>
+
+                        <div class="col-12 d-grid">
+                            <button class="btn btn-success fw-bold update-button">Update</button>
+                        </div>
+
+                        <div class="col-12 d-grid">
+                            <button class="btn btn-danger fw-bold">Delete</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="/assets/js/script.js"></script>
+
+<script type="text/javascript">
+
+    let id = [[${user.id}]]
+    alert(id)
+
+    document.getElementsByClassName('update-button').item(0).addEventListener('click', function () {
+
+        let name = document.getElementById('name').value;
+        let password = document.getElementById('password').value;
+
+        fetch('user/update/', {
+            method: 'post',
+            headers: {
+                'authorization': localStorage.getItem('accessToken'),
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'name': name,
+                'email': email,
+                'password': password
+            })
+        }).then(response => response.text())
+            .then(data => {
+                alert(data)
+            }).catch(error => {
+            console.log(error)
+        })
+
+    })
+</script>
+</body>
+
+</html>
